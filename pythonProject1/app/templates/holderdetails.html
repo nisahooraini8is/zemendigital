@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+
+{% block title %} Members {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block content %}
+{% if session['role']=='admin' %}
+<style>
+   tr{
+   margin-top:20px;
+   border-bottom: 1px solid black;
+   width:100%;
+   }
+  th{
+  text-align:center;
+  color: #19355f;
+  }
+   td{
+  text-align:center;
+  color: #19355f;
+  }
+
+.active-button {
+      background-color: green;
+    }
+</style>
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+         <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="card-header">
+            <h4 class="card-title">Verification Details</h4>
+          </div>
+         </div>
+          <div class="card-body">
+            <div style="display:flex;">
+              <div>
+                <h4 class="card-title">person Selfie:</h4>
+              <div>
+                   <img style="width: 75%;
+    border-radius: 0.2857rem;
+    display: block;
+    margin: auto;
+}"  src="{{ url_for('static', filename='/img/selfie.jpg') }}" alt="">
+              </div>
+              </div>
+            <div><h4 class="card-title">Id Card:</h4><br>
+               <div style="display:flex;">
+              <div>
+                <p class="card-title">Front:</p>
+              <div>
+                   <img style="width: 75%;
+    border-radius: 0.2857rem;
+    display: block;
+    margin: auto;
+}"  src="{{ url_for('static', filename='/img/front.jpg') }}" alt="">
+              </div>
+              </div>
+            <div><p class="card-title">Back:</p><br>
+              <div>
+                   <img style="width: 75%;
+    border-radius: 0.2857rem;
+    display: block;
+    margin: auto;
+}"  src="{{ url_for('static', filename='/img/back.jpg') }}" alt="">
+              </div></div>
+          </div>
+          </div>
+        </div>
+
+            <form action="/savemember" method="post">
+                        <div class="row">
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <input type="email" name="test" class="form-control" placeholder="John">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="email" name="test" class="form-control" placeholder="Henry">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="text" name="text" class="form-control" placeholder="0245674887">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">Secondary Number</label>
+                                    <input type="text" name="text" class="form-control" placeholder="879745654">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">D.O.B</label>
+                                    <input type="text" name="test" class="form-control" placeholder="21-feb-1998">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="john123@gmail.com">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="row">
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">Tin</label>
+                                    <input type="text" name="text" class="form-control" placeholder="4523">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">City</label>
+                                    <input type="text" name="email" class="form-control" placeholder="Ontario">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">Postat code</label>
+                                    <input type="email" name="test" class="form-control" placeholder="l678hk9">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">Street Address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Ontario, Canada">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">Residential Status</label>
+                                    <input type="text" name="test" class="form-control" placeholder="Ontario, Canada">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+                             <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label>Province</label>
+                                    <select name="selected_role" class="form-control" id="roleSelect">
+                        <option value="">
+                            Tigray
+
+                        </option>
+                        <option value="">
+                            Afar
+
+                        </option>
+                        <option value="">
+                            Oromia
+
+                        </option>
+                        <option value="">
+                            Somali
+
+                        </option>
+                        <option value="">
+                            Benishangul-Gumuz
+
+                        </option>
+                        <option value="">
+
+                            Southern Nations
+
+                        </option>
+                        <option value="">
+
+                            Nationalities
+
+                        </option>
+                        <option value="">
+
+                            Gambella and Harari
+
+                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                                <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label>Employment Status</label>
+                                    <select name="selected_role" class="form-control" id="roleSelect">
+                                           <option value="">employment</option>
+                        <option value="">selfEmployment</option>
+                        <option value="">freelance</option>
+                        <option value="">businessOwner</option>
+                                    </select>
+                                </div>
+                            </div>
+                              <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label>Source Of Income</label>
+                                    <select name="selected_role" class="form-control" id="roleSelect">
+                            <option value="">Employment</option>
+                        <option value="">Self-Employment</option>
+                        <option value="">Freelance</option>
+                        <option value="">Business Owner</option>
+                        <option value="">Investment</option>
+                        <option value="">Retirement</option>
+                        <option value="">Goverment Assistance</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row">
+
+                            <div class="col-md-6 pl-md-1">
+                                <div class="form-group">
+                                    <label class="form-label">Gross Income</label>
+                                    <input type="text" name="test" class="form-control" placeholder="$60,000">
+                                    <section class="display-error-message">
+                                    </section>
+                                </div>
+                            </div>
+
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-fill btn-primary">Approve</button>
+                        </div>
+                    </form>
+
+
+      </div>
+
+    </div>
+  </div>
+
+{% endif %}
+{% endblock content %}
+{% block javascripts %}{% endblock javascripts %}
